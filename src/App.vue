@@ -3,8 +3,8 @@
    <h1>Color me HEX</h1>
    <form @submit.prevent>
     <label>
-      Enter your name
-      <input type="text" v-model="name" />
+      <span class="hidden">Type a name</span>
+      <input placeholder="Type your name" type="text" v-model="name" />
     </label>
 
     <label v-show="hexName">
@@ -45,12 +45,27 @@ export default {
   $spacing: 1.25rem;
   $font-color: #2c3e50;
 
+  .hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+  }
+
   #app {
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: $font-color;
-    padding: $spacing;
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
   }
 
   h1 {
