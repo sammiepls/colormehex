@@ -26,9 +26,12 @@ export default {
   computed: {
     hexName () {
       let hexName = this.name.toLowerCase()
-      if (this.name.length < 6) return false
 
-      return `#${hexName.replace(/([^a-e])/g, 0).substr(0, 6)}`
+      if (hexName.length < 6 && hexName.length != 3) {
+        hexName = hexName + "0".repeat(6 - hexName.length)
+      }
+
+      return `#${hexName.replace(/([^a-f])/g, 0).substr(0, 6)}`
     },
     containerStyles () {
       if (!this.hexName) return {}
