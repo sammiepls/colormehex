@@ -4,7 +4,7 @@
    <form @submit.prevent>
     <label>
       <span class="hidden">Type a name</span>
-      <input placeholder="Type your name" type="text" v-model="name" />
+      <input placeholder="Type your name" type="text" v-model="name" v-on:keyup.enter="changeColor"/>
     </label>
 
     <label v-show="hexName">
@@ -27,8 +27,8 @@ export default {
     hexName () {
       let hexName = this.name.toLowerCase()
 
-      if (hexName.length < 6 && hexName.length != 3) {
-        hexName = hexName + "0".repeat(6 - hexName.length)
+      if (hexName.length < 6 && hexName.length !== 3) {
+        hexName = hexName + '0'.repeat(6 - hexName.length)
       }
 
       return `#${hexName.replace(/([^a-f])/g, 0).substr(0, 6)}`
